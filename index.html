@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Report PED - Custom</title>
+</head>
+<body style="font-family: Arial; max-width: 600px; margin: 40px auto;">
+  <h2>Report Avanzamento PED</h2>
+
+  <label for="pdv">Punto Vendita:</label><br />
+  <select id="pdv" style="width: 100%; padding: 6px; font-size: 16px;">
+    <option value="">-- Seleziona il punto vendita --</option>
+    <option value="FANO">FANO</option>
+    <option value="MONSANO">MONSANO</option>
+    <option value="OSIMO">OSIMO</option>
+    <option value="MACERATA">MACERATA</option>
+    <option value="CIVITANOVA">CIVITANOVA</option>
+    <option value="PESARO">PESARO</option>
+  </select>
+  <br /><br />
+
+  <label for="deltaMese">DELTA MESE €:</label><br />
+  <input type="number" id="deltaMese" /><br /><br />
+
+  <label for="deltaPrMedio">DELTA PR.MEDIO €:</label><br />
+  <input type="number" id="deltaPrMedio" /><br /><br />
+
+  <h3 style="margin-top: 30px; color: #333;">Prodotti Focus</h3>
+
+  <label for="tvOled">TV OLED:</label><br />
+  <input type="number" id="tvOled" /><br /><br />
+
+  <label for="tvFg">TV F.G.:</label><br />
+  <input type="number" id="tvFg" /><br /><br />
+
+  <h3 style="margin-top: 30px; color: #333;">ATTACH PED</h3>
+
+  <label for="Soundbar">Soundbar:</label><br />
+  <select id="Soundbar">
+    <option value="">-- Seleziona un colore --</option>
+    <option value="Rosso">Rosso</option>
+    <option value="Arancio">Arancio</option>
+    <option value="Giallo">Giallo</option>
+    <option value="Verdino">Verdino</option>
+    <option value="Verde">Verde</option>
+  </select><br /><br />
+
+  <label for="Accessori">Accessori:</label><br />
+  <select id="Accessori">
+    <option value="">-- Seleziona un colore --</option>
+    <option value="Rosso">Rosso</option>
+    <option value="Arancio">Arancio</option>
+    <option value="Giallo">Giallo</option>
+    <option value="Verdino">Verdino</option>
+    <option value="Verde">Verde</option>
+  </select><br /><br />
+
+  <button onclick="inviaEmail()" style="padding: 10px 20px; font-size: 16px;">Invia Report via Email</button>
+
+  <script>
+    function inviaEmail() {
+      const pdv = document.getElementById("pdv").value;
+      const deltaMese = document.getElementById("deltaMese").value;
+      const deltaPrMedio = document.getElementById("deltaPrMedio").value;
+      const tvOled = document.getElementById("tvOled").value;
+      const tvFg = document.getElementById("tvFg").value;
+      const soundbar = document.getElementById("Soundbar").value;
+      const accessori = document.getElementById("Accessori").value;
+
+      const corpo = `
+PUNTO VENDITA: ${pdv}
+
+DELTA MESE €: ${deltaMese}
+DELTA PR.MEDIO €: ${deltaPrMedio}
+
+--- Prodotti Focus ---
+TV OLED: ${tvOled}
+TV F.G.: ${tvFg}
+
+--- ATTACH PED ---
+Soundbar: ${soundbar}
+Accessori: ${accessori}
+      `;
+
+      const mailtoLink = `mailto:d.pavoni@dml-italia.com?subject=AVANZAMENTO SETTORE PED&body=${encodeURIComponent(corpo)}`;
+      window.location.href = mailtoLink;
+    }
+  </script>
+</body>
+</html>
